@@ -1,4 +1,4 @@
-package de.kuksin.passwordencoding.persistence;
+package de.kuksin.passwordencoding.authentication;
 
 import de.kuksin.passwordencoding.authentication.UserCredentials;
 import de.kuksin.passwordencoding.authentication.UserRepository;
