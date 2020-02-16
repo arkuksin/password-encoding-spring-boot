@@ -1,6 +1,5 @@
 package de.kuksin.passwordencoding.resources;
 
-import de.kuksin.passwordencoding.authentication.UserCredetianls;
 import de.kuksin.passwordencoding.authentication.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,7 +27,7 @@ public class UserResources {
     @PostMapping("/registration")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void register(@RequestBody UserCredentials userCredentials) {
-        UserCredetianls userCredetianls = UserCredetianls.builder()
+        de.kuksin.passwordencoding.authentication.userCredentials userCredetianls = de.kuksin.passwordencoding.authentication.userCredentials.builder()
                 .enabled(true)
                 .username(userCredentials.getUsername())
                 .password(passwordEncoder.encode(userCredentials.getPassword()))

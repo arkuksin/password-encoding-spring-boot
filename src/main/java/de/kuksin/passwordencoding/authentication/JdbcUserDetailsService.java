@@ -22,7 +22,7 @@ public class JdbcUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserCredetianls userCredetianls = userRepository.findByUsername(username);
-        return userDetailsMapper.toUserDetails(userCredetianls);
+        userCredentials userCredentials = userRepository.findByUsername(username);
+        return userDetailsMapper.toUserDetails(userCredentials);
     }
 }

@@ -21,8 +21,8 @@ public class JdbcUserDetailPasswordService implements UserDetailsPasswordService
 
     @Override
     public UserDetails updatePassword(UserDetails user, String newPassword) {
-        UserCredetianls userCredetianls = userRepository.findByUsername(user.getUsername());
-        userCredetianls.setPassword(newPassword);
-        return userDetailsMapper.toUserDetails(userCredetianls);
+        userCredentials userCredentials = userRepository.findByUsername(user.getUsername());
+        userCredentials.setPassword(newPassword);
+        return userDetailsMapper.toUserDetails(userCredentials);
     }
 }

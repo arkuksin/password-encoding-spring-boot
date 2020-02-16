@@ -1,7 +1,7 @@
 package de.kuksin.passwordencoding.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.kuksin.passwordencoding.authentication.UserCredetianls;
+import de.kuksin.passwordencoding.authentication.userCredentials;
 import de.kuksin.passwordencoding.authentication.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,8 +79,8 @@ class CarResourcesTest {
                 // then
                 .andExpect(status().isOk());
 
-        UserCredetianls userCredetianls = userRepository.findByUsername("user with working factor 5");
-        assertThat(userCredetianls.getPassword()).startsWith("{bcrypt}$2a$10");
+        userCredentials userCredentials = userRepository.findByUsername("user with working factor 5");
+        assertThat(userCredentials.getPassword()).startsWith("{bcrypt}$2a$10");
     }
 
     @Test
@@ -92,8 +92,8 @@ class CarResourcesTest {
                 // then
                 .andExpect(status().isOk());
 
-        UserCredetianls userCredetianls = userRepository.findByUsername("user with sha1 encoding");
-        assertThat(userCredetianls.getPassword()).startsWith("{bcrypt}");
+        userCredentials userCredentials = userRepository.findByUsername("user with sha1 encoding");
+        assertThat(userCredentials.getPassword()).startsWith("{bcrypt}");
     }
 
     @Test

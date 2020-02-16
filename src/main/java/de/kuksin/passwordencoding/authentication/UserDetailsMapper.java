@@ -1,6 +1,5 @@
 package de.kuksin.passwordencoding.authentication;
 
-import de.kuksin.passwordencoding.authentication.UserCredetianls;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -8,12 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDetailsMapper {
 
-    UserDetails toUserDetails(UserCredetianls userCredetianls) {
+    UserDetails toUserDetails(userCredentials userCredentials) {
 
         return User
-                .withUsername(userCredetianls.getUsername())
-                .password(userCredetianls.getPassword())
-                .roles(userCredetianls.getRoles().toArray(String[]::new))
+                .withUsername(userCredentials.getUsername())
+                .password(userCredentials.getPassword())
+                .roles(userCredentials.getRoles().toArray(String[]::new))
                 .build();
     }
 }
