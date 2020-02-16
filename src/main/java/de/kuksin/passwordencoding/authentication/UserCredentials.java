@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
-public class userCredentials {
+public class UserCredentials {
 
     @Id
     private String username;

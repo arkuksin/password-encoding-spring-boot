@@ -1,7 +1,7 @@
 package de.kuksin.passwordencoding.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.kuksin.passwordencoding.authentication.userCredentials;
+import de.kuksin.passwordencoding.authentication.UserCredentials;
 import de.kuksin.passwordencoding.authentication.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ class CarResourcesTest {
     void registrationShouldReturnCreated() throws Exception {
 
         // register
-        UserCredentials userCredentials = UserCredentials.builder().username("toyota").password("my secret").build();
+        de.kuksin.passwordencoding.resources.UserCredentials userCredentials = de.kuksin.passwordencoding.resources.UserCredentials.builder().username("toyota").password("my secret").build();
         mockMvc.perform(post("/registration")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(objectMapper.writeValueAsString(userCredentials))
@@ -79,7 +79,7 @@ class CarResourcesTest {
                 // then
                 .andExpect(status().isOk());
 
-        userCredentials userCredentials = userRepository.findByUsername("user with working factor 5");
+        UserCredentials userCredentials = userRepository.findByUsername("user with working factor 5");
         assertThat(userCredentials.getPassword()).startsWith("{bcrypt}$2a$10");
     }
 
@@ -92,7 +92,7 @@ class CarResourcesTest {
                 // then
                 .andExpect(status().isOk());
 
-        userCredentials userCredentials = userRepository.findByUsername("user with sha1 encoding");
+        UserCredentials userCredentials = userRepository.findByUsername("user with sha1 encoding");
         assertThat(userCredentials.getPassword()).startsWith("{bcrypt}");
     }
 

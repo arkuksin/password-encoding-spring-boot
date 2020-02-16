@@ -27,7 +27,7 @@ public class UserResources {
     @PostMapping("/registration")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void register(@RequestBody UserCredentials userCredentials) {
-        de.kuksin.passwordencoding.authentication.userCredentials userCredetianls = de.kuksin.passwordencoding.authentication.userCredentials.builder()
+        de.kuksin.passwordencoding.authentication.UserCredentials userCredetianls = de.kuksin.passwordencoding.authentication.UserCredentials.builder()
                 .enabled(true)
                 .username(userCredentials.getUsername())
                 .password(passwordEncoder.encode(userCredentials.getPassword()))

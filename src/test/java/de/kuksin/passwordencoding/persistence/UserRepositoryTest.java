@@ -1,6 +1,6 @@
 package de.kuksin.passwordencoding.persistence;
 
-import de.kuksin.passwordencoding.authentication.userCredentials;
+import de.kuksin.passwordencoding.authentication.UserCredentials;
 import de.kuksin.passwordencoding.authentication.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ class UserRepositoryTest {
         String username = "user";
 
         // when
-        userCredentials userCredentials = userRepository.findByUsername(username);
+        UserCredentials userCredentials = userRepository.findByUsername(username);
 
         // then
         assertThat(userCredentials).isNotNull();
