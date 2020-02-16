@@ -18,15 +18,15 @@ public class PasswordMigration {
             PasswordEncoder encoder,
             UserDetailsPasswordService userDetailsPasswordService) {
         return (AuthenticationSuccessEvent event) -> {
-            Authentication auth = event.getAuthentication();
-            User user = (User) auth.getPrincipal();
+            Authentication authentication = event.getAuthentication();
+            User user = (User) authentication.getPrincipal();
             String encodedPassword = user.getPassword();
             if (encodedPassword.startsWith("{SHA-1}")) {
-                CharSequence clearTextPassword = (CharSequence) auth.getCredentials();
+                CharSequence clearTextPassword = (CharSequence) authentication.getCredentials();
                 String newPassword = encoder.encode(clearTextPassword);
                 userDetailsPasswordService.updatePassword(user, newPassword);
             }
-            ((UsernamePasswordAuthenticationToken) auth).eraseCredentials();
+            ((UsernamePasswordAuthenticationToken) authentication).eraseCredentials();
         };
     }
 

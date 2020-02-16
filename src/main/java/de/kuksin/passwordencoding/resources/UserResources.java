@@ -1,5 +1,6 @@
 package de.kuksin.passwordencoding.resources;
 
+import de.kuksin.passwordencoding.authentication.UserCredentials;
 import de.kuksin.passwordencoding.authentication.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,13 +27,13 @@ public class UserResources {
 
     @PostMapping("/registration")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void register(@RequestBody UserCredentials userCredentials) {
-        de.kuksin.passwordencoding.authentication.UserCredentials userCredetianls = de.kuksin.passwordencoding.authentication.UserCredentials.builder()
+    public void register(@RequestBody UserCredentialsDto userCredentialsDto) {
+        UserCredentials user = UserCredentials.builder()
                 .enabled(true)
-                .username(userCredentials.getUsername())
-                .password(passwordEncoder.encode(userCredentials.getPassword()))
+                .username(userCredentialsDto.getUsername())
+                .password(passwordEncoder.encode(userCredentialsDto.getPassword()))
                 .roles(Set.of("USER"))
                 .build();
-        userRepository.save(userCredetianls);
+        userRepository.save(user);
     }
 }

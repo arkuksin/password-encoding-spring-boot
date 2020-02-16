@@ -50,10 +50,10 @@ class CarResourcesTest {
     void registrationShouldReturnCreated() throws Exception {
 
         // register
-        de.kuksin.passwordencoding.resources.UserCredentials userCredentials = de.kuksin.passwordencoding.resources.UserCredentials.builder().username("toyota").password("my secret").build();
+        UserCredentialsDto userCredentialsDto = UserCredentialsDto.builder().username("toyota").password("my secret").build();
         mockMvc.perform(post("/registration")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(userCredentials))
+                .content(objectMapper.writeValueAsString(userCredentialsDto))
         )
                 // then
                 .andExpect(status().isCreated());
